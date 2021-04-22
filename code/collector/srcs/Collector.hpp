@@ -3,7 +3,8 @@
 
 #include <fstream>
 #include <iostream>
-#include<sstream>
+#include <sstream>
+#include <exception>
 #include <ctime>
 
 class Collector {
@@ -11,8 +12,12 @@ class Collector {
   std::ofstream fs;
   Collector();
   Collector(Collector const &);
+
   Collector &operator=(Collector const &);
+
   int openLogfile(std::string &filename);
+  int closeLogfile(void);
+  bool isFileClose;
 
  public:
   ~Collector();

@@ -29,23 +29,45 @@ std::string getFormattedLogTime(char const delemeter) {
 }
 // helper ends
 
-Collector::Collector(char *logFileName) {
+Collector::Collector(char *logFileName) : isFileClose(false) {
   std::string fileName = logFileName;
 
   if (this->openLogfile(fileName) == true) {
     this->fs << getFormattedLogTime('-')
              << ": Write the word, \"" << fileName
              << "\" in a file called \"" << fileName << "\"" << std::endl;
-    fs.close();
   }
 }
 
-Collector::~Collector() {}
+Collector::~Collector() {
+  this->closeLogfile();
+}
+
+int Collector::closeLogfile() {
+  if (isFileClose != false)
+    return (false);
+
+  try {
+    this->fs.close();
+    isFileClose = true;
+  } catch (std::exception &e) {
+    std::cerr << "Error: " << e.what() << std::endl;
+  }
+
+  return (true);
+}
 
 int Collector::openLogfile(std::string &fileName) {
-  this->fs.open(fileName, std::fstream::out | std::fstream::app);
-  if (!(fs.is_open()))
+  try {
+    this->fs.open(fileName, std::fstream::out | std::fstream::app);
+  } catch (std::exception &e) {
+    std::cerr << "Error: " << e.what() << std::endl;
+  }
+
+  if (!(fs.is_open())) {
+    this->isFileClose = true;
     return (false);
+  }
 
   return (true);
 }

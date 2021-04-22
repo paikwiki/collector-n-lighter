@@ -15,8 +15,8 @@ class Collector {
 
   Collector &operator=(Collector const &);
 
-  int openLogfile(std::string &filename);
-  int closeLogfile(void);
+  bool openLogfile(std::string &filename);
+  bool closeLogfile(void);
   bool isFileClose;
 
  public:

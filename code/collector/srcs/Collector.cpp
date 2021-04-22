@@ -43,7 +43,7 @@ Collector::~Collector() {
   this->closeLogfile();
 }
 
-int Collector::closeLogfile() {
+bool Collector::closeLogfile() {
   if (isFileClose != false)
     return (false);
 
@@ -57,7 +57,7 @@ int Collector::closeLogfile() {
   return (true);
 }
 
-int Collector::openLogfile(std::string &fileName) {
+bool Collector::openLogfile(std::string &fileName) {
   try {
     this->fs.open(fileName, std::fstream::out | std::fstream::app);
   } catch (std::exception &e) {

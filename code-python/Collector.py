@@ -35,7 +35,7 @@ class Collector:
         t = localtime()
         cDate = strftime("%Y-%m-%d", t)
         cTime = strftime("%H:%M:%S", t)
-        return (" ".join([cDate, cTime]))
+        self.timestamp = " ".join([cDate, cTime])
 
     # __setFilePath()
     # - example: ./logs/log_2021-05-20.log

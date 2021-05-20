@@ -10,6 +10,8 @@ readFile = config.FILE_TO_READ
 lastmod = int(os.path.getmtime(readFile))
 while True:
 	if lastmod != int(os.path.getmtime(readFile)):
-		lastmod = int(os.path.getmtime(readFile))
 		collector.collect()
-	sleep(1)
+		sleep(config.DELAY_SIGNAL_IN)
+		lastmod = int(os.path.getmtime(readFile))
+	else:
+		sleep(config.DELAY_DEFAULT)

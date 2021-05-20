@@ -10,8 +10,9 @@ class Collector:
 	filePath = "/".join([fileDir, fileName])
 
 	def __init__(self):
-		os.makedirs(self.fileDir, exist_ok=True)
-	def getTimestamp(self):
+        # update file path every collect()
+        # just in case collector runs over one day
+        self.__setFilePath()
 		t = localtime()
 		cDate = strftime("%Y-%m-%d", t)
 		cTime = strftime("%H:%M:%S", t)

@@ -18,5 +18,5 @@ class Collector:
 		return (" ".join([cDate, cTime]))
 	def collect(self):
 		f = open(self.filePath, 'a')
-		f.write(self.getTimestamp() + " hey\n")
+		f.write(self.getTimestamp() + "\n")
 		f.close()

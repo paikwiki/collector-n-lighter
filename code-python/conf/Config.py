@@ -3,7 +3,7 @@ class Config:
     DIR_TO_SAVE = "./logs"
     # will be updated when signal comes in
     FILE_TO_READ = "./InputSignal.txt"
-    # seconds
+    # unit: second
     DELAY_SIGNAL_IN = 5
-    # seconds
+    # unit: second
     DELAY_DEFAULT = 1

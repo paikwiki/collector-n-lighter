@@ -1,17 +1,17 @@
 import os
+from typing import Any
 from time import sleep
 from Collector import Collector
 from conf.Config import Config
 
-collector = Collector()
-config = Config()
+collector : Any = Collector()
+readFile : str = Config.FILE_TO_READ
+lastmod : int = int(os.path.getmtime(readFile))
 
-readFile = config.FILE_TO_READ
-lastmod = int(os.path.getmtime(readFile))
 while True:
     if lastmod != int(os.path.getmtime(readFile)):
         collector.collect()
-        sleep(config.DELAY_SIGNAL_IN)
+        sleep(Config.DELAY_SIGNAL_IN)
         lastmod = int(os.path.getmtime(readFile))
     else:
-        sleep(config.DELAY_DEFAULT)
+        sleep(Config.DELAY_DEFAULT)

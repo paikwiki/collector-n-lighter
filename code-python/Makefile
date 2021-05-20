@@ -1,10 +1,13 @@
-NAME = cnl
-RM = rm -rf
+NAME 	=	cnl
+RM 		=	rm -rf
+MYPY 	=	mypy
 
-$(NAME):
+$(NAME):	typecheck
 			python3 main.py
 all:		$(NAME)
 clean:
 			$(RM) __pycache__ **/__pycache__
 			$(RM) *.pyc **/*.pyc
-.PHONY: 	all clean
+typecheck:
+			$(MYPY) *.py **/*.py
+.PHONY: 	all clean typecheck

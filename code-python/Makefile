@@ -2,7 +2,7 @@ NAME 	=	cnl
 RM 		=	rm -rf
 MYPY 	=	mypy
 
-$(NAME):	typecheck
+$(NAME):
 			python3 main.py
 all:		$(NAME)
 clean:

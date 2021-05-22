@@ -13,7 +13,7 @@ class Collector:
     def __init__(self):
         self.__setFilePath()
         # exist_ok: not throw
-        os.makedirs(Config.DIR_TO_SAVE, exist_ok=True)
+        os.makedirs(Config.DIR_LOGS, exist_ok=True)
 
     # collect()
     # - update self.__timestamp
@@ -40,6 +40,6 @@ class Collector:
     # - example: ./logs/log_2021-05-20.log
     def __setFilePath(self):
         currentDate = strftime("%Y-%m-%d", localtime())
-        _fileDir: str = Config.DIR_TO_SAVE
+        _fileDir: str = Config.DIR_LOGS
         _fileName: str = "log_" + currentDate + ".log"
         self.__filePath = "/".join([_fileDir, _fileName])

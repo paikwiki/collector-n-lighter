@@ -1,6 +1,6 @@
 class Config:
     # will store logs(one file per a day)
-    DIR_TO_SAVE = "./logs"
+    DIR_LOGS = "./logs"
     # will be updated when signal comes in
     FILE_TO_READ = "./InputSignal.txt"
     # unit: second

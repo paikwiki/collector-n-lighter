@@ -8,7 +8,7 @@ class Lighter:
     targetFile = NotImplemented
 
     __filePath: str = ""
-    __days_ago: int = 0
+    __daysAgo: int = 0
 
     def __init__(self):
         self.__setFilePath()
@@ -26,7 +26,7 @@ class Lighter:
         if not line:
             self.targetFile.close()
             return
-        curr = datetime.datetime.now() - datetime.timedelta(days=self.__days_ago)
+        curr = datetime.datetime.now() - datetime.timedelta(days=self.__daysAgo)
         seconds = mktime(datetime.datetime.strptime(line, "%Y-%m-%d %H:%M:%S").timetuple())
         parsedLine = datetime.datetime.fromtimestamp(seconds)
 
@@ -57,13 +57,13 @@ class Lighter:
     def __setFilePath(self):
         currentDate = datetime.datetime.now()
         fileDir: str = Config.DIR_LOGS
-        for days_ago in range(1, Config.RANGE_TO_FIND):
-            fileDate = currentDate - datetime.timedelta(days=days_ago)
+        for daysAgo in range(1, Config.RANGE_TO_FIND):
+            fileDate = currentDate - datetime.timedelta(days=daysAgo)
             fileName: str = "log_" + fileDate.strftime("%Y-%m-%d") + ".log"
             filePath: str = "/".join([fileDir, fileName])
             if os.path.isfile(filePath):
                 self.__filePath = filePath
-                self.__days_ago = days_ago
+                self.__daysAgo = daysAgo
                 break
         if (self.__filePath == ""):
             print("Error: Log file does not exist.")

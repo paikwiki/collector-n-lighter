@@ -4,11 +4,14 @@ from conf.Config import Config
 from time import sleep
 import datetime
 import requests
+
 class Lighter:
     targetFile = NotImplemented
 
     __filePath: str = ""
     __daysAgo: int = 0
+    isEnd: bool = False
+    isCurrentOn: bool = False
 
     def __init__(self):
         self.__setFilePath()
@@ -18,13 +21,15 @@ class Lighter:
         # 파일 열기
         if (self.__filePath != ""):
             self.targetFile = open(self.__filePath)
-        if not self.targetFile: return
+        if self.targetFile == NotImplemented : return
 
         line = self.targetFile.readline().rstrip()
 
         # 빈 파일일 경우 끝내기
         if not line:
             self.targetFile.close()
+            print("Error: Empty file")
+            self.isEnd = True
             return
         curr = datetime.datetime.now() - datetime.timedelta(days=self.__daysAgo)
         seconds = mktime(datetime.datetime.strptime(line, "%Y-%m-%d %H:%M:%S").timetuple())
@@ -44,9 +49,11 @@ class Lighter:
         if (parsedLine >= curr and parsedLine <= curr + datetime.timedelta(seconds=Config.DELAY_DEFAULT + 0.1)): # TODO: 혹시 몰라서 패딩값 적용
             print(">> Light ON")
             requests.get('http://192.168.0.31')
-            sleep(Config.DELAY_LIGHT_ON)
+            self.isCurrentOn = True
+            sleep(Config.DELAY_LIGHT_ON + 0.05)  # TODO: 혹시 몰라서 패딩값 적용
             print("<< Light OFF")
             requests.get('http://192.168.0.31')
+            self.isCurrentOn = False
 
         # 파일 닫기
         self.targetFile.close()
@@ -67,5 +74,6 @@ class Lighter:
                 break
         if (self.__filePath == ""):
             print("Error: Log file does not exist.")
+            self.isEnd = True
         else:
             print(self.__filePath)

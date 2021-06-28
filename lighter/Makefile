@@ -9,5 +9,5 @@ clean:
 			$(RM) __pycache__ **/__pycache__
 			$(RM) *.pyc **/*.pyc
 typecheck:
-			$(MYPY) *.py **/*.py
+			$(MYPY) --config-file mypi.ini *.py **/*.py
 .PHONY: 	all clean typecheck

@@ -6,6 +6,8 @@ from conf.Config import Config
 
 lighter: Any = Lighter()
 
-while True:
+while lighter.isEnd == False:
     lighter.light()
     sleep(Config.DELAY_DEFAULT)
+
+print("Lighter end")

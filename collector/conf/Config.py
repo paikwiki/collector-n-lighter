@@ -6,5 +6,5 @@ class Config:
     # unit: second
     DELAY_SIGNAL_IN = 5
     # unit: second
-    DELAY_DEFAULT = 1
+    DELAY_DEFAULT = 0.5
     ENDTIME_OF_DAY = "22:00:00"

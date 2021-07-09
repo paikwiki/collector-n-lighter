@@ -1,6 +1,6 @@
 class Config:
     # will store logs(one file per a day)
-    DIR_LOGS = "../logs"
+    DIR_LOGS = "/home/pi/codes/collector-n-lighter/logs"
     # unit: second
     DELAY_LIGHT_ON = 5
     # unit: second

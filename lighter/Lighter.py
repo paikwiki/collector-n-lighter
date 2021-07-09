@@ -43,15 +43,15 @@ class Lighter:
 
             seconds = mktime(datetime.datetime.strptime(line, "%Y-%m-%d %H:%M:%S").timetuple())
             parsedLine = datetime.datetime.fromtimestamp(seconds)
-        print(parsedLine, " - ", curr, " = ", parsedLine - curr)
+        # print(parsedLine, " - ", curr, " = ", parsedLine - curr)
 
         # 타겟이 되는 로그가 불을 켜야하는 상태인지 체크
         if (parsedLine >= curr and parsedLine <= curr + datetime.timedelta(seconds=Config.DELAY_DEFAULT + 0.1)): # TODO: 혹시 몰라서 패딩값 적용
-            print(">> Light ON")
+            # print(">> Light ON")
             requests.get('http://192.168.0.31')
             self.isCurrentOn = True
             sleep(Config.DELAY_LIGHT_ON + 0.05)  # TODO: 혹시 몰라서 패딩값 적용
-            print("<< Light OFF")
+            # print("<< Light OFF")
             requests.get('http://192.168.0.31')
             self.isCurrentOn = False
 
@@ -75,5 +75,5 @@ class Lighter:
         if (self.__filePath == ""):
             print("Error: Log file does not exist.")
             self.isEnd = True
-        else:
-            print(self.__filePath)
+        # else:
+        #     print(self.__filePath)

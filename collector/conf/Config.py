@@ -1,8 +1,8 @@
 class Config:
     # will store logs(one file per a day)
-    DIR_LOGS = "../logs"
+    DIR_LOGS = "/home/pi/codes/collector-n-lighter/logs"
     # will be updated when signal comes in
-    FILE_TO_READ = "./InputSignal.txt"
+    FILE_TO_READ = "/home/pi/codes/collector-n-lighter/collector/InputSignal.txt"
     # unit: second
     DELAY_SIGNAL_IN = 5
     # unit: second

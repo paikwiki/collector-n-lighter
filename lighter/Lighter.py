@@ -3,7 +3,8 @@ from time import localtime, strftime, struct_time, mktime, time
 from conf.Config import Config
 from time import sleep
 import datetime
-import requests
+# import requests
+import RPi.GPIO as GPIO
 
 class Lighter:
     targetFile = NotImplemented
@@ -15,6 +16,8 @@ class Lighter:
 
     def __init__(self):
         self.__setFilePath()
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(Config.RELAY_PIN, GPIO.OUT)
 
     def light(self):
 
@@ -48,11 +51,13 @@ class Lighter:
         # 타겟이 되는 로그가 불을 켜야하는 상태인지 체크
         if (parsedLine >= curr and parsedLine <= curr + datetime.timedelta(seconds=Config.DELAY_DEFAULT + 0.1)): # TODO: 혹시 몰라서 패딩값 적용
             # print(">> Light ON")
-            requests.get('http://192.168.0.31')
+            # requests.get('http://192.168.0.31')
+            GPIO.output(Config.RELAY_PIN, 1)
             self.isCurrentOn = True
             sleep(Config.DELAY_LIGHT_ON + 0.05)  # TODO: 혹시 몰라서 패딩값 적용
             # print("<< Light OFF")
-            requests.get('http://192.168.0.31')
+            # requests.get('http://192.168.0.31')
+            GPIO.output(Config.RELAY_PIN, 0)
             self.isCurrentOn = False
 
         # 파일 닫기

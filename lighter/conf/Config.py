@@ -7,4 +7,4 @@ class Config:
     DELAY_DEFAULT = 1
     # unit: days
     RANGE_TO_FIND = 7
-    RELAY_PIN = 11
+    RELAY_PIN = 17

@@ -3,7 +3,7 @@ class Config:
     DIR_LOGS = "/home/pi/codes/collector-n-lighter/logs"
     PIR_PIN = 23
     # unit: second
-    DELAY_SIGNAL_IN = 5
+    DELAY_SIGNAL_IN = 59 # Lighter DELAY - 1 SEC
     # unit: second
     DELAY_DEFAULT = 0.5
     ENDTIME_OF_DAY = "22:00:00"
